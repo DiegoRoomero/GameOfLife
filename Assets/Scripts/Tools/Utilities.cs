@@ -248,4 +248,32 @@ public class Utilities
         Debug.DrawLine(vrtx4, vrtx1, Color.white, 100f);
     }
 
+    public static bool RunButtonClicked(Vector3 vector)
+    {
+        float x = vector[0];
+        float y = vector[1];
+        
+        if(x >= 2 && x <= 9 && y<= -13 && y >= -17)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+            
+    }
+
+    public static int RunConway(Grid grid, int x, int y)
+    {
+        int ValorActual = grid.GetValue(x,y);
+
+        if(ValorActual == 0)
+        {
+
+        }
+
+        return ValorActual;
+    }
+
 }

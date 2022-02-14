@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Testing : MonoBehaviour
+public class Build : MonoBehaviour
 {
     // Made by Diego Romero Iregui
 
@@ -47,6 +47,7 @@ public class Testing : MonoBehaviour
 
         if (Input.GetAxis("Fire1") > 0f)
         {
+
             //Debug.Log(xtemp + " " + ytemp);
            
 
@@ -96,7 +97,14 @@ public class Testing : MonoBehaviour
         }
 
         visitedCells.Clear();
-    
+
+        if(Input.GetMouseButtonDown(0) && Utilities.RunButtonClicked(Utilities.GetMouseWorldPositíon())){
+            DataHolder.GridHolder = grid;
+            
+
+            DataHolder.MeshHolder = mesh;
+            Loader.Load(Loader.Scene.Run);
+        }
 
         if (Input.GetMouseButtonDown(1))
         {
