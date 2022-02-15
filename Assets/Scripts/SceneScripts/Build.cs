@@ -9,7 +9,7 @@ public class Build : MonoBehaviour
     private Grid grid;
     private Mesh mesh;
 
-    private int verticalCells = 6;
+    private int verticalCells = DataHolder.verticalCellsHolder;
     private int horizontalCells;
 
     private int x, y;
@@ -17,7 +17,7 @@ public class Build : MonoBehaviour
 
     Vector3 coord;
     private float cellSize;
-    private Vector3 originPosition = new Vector3(-30, -10);
+    private Vector3 originPosition = DataHolder.originPositionHolder;
 
     private List<Vector3> visitedCells = new List<Vector3>();
     

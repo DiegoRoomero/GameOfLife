@@ -19,6 +19,10 @@ public static class DataHolder
         }
     }*/
 
+    public static int verticalCellsHolder = 30;
+
+    public static Vector3 originPositionHolder = new Vector3(-30, -10);
+
     public static Grid GridHolder { get; set; }
 
     public static Mesh MeshHolder { get; set; }

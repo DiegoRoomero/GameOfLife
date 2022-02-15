@@ -1,0 +1,79 @@
+[33mcommit 1168ef0e38340eb45eaa4d0f12578f1d2d6c7c17[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Diego Romero Iregui <dromeroi@unal.edu.co>
+Date:   Mon Feb 14 15:09:32 2022 -0500
+
+    Build scene completed, Run scene added
+
+Assets/Scenes/Build.unity
+Assets/Scenes/Build.unity.meta
+Assets/Scenes/Run.unity
+Assets/Scenes/Run.unity.meta
+Assets/Scripts/DataHolder.cs
+Assets/Scripts/DataHolder.cs.meta
+Assets/Scripts/SceneScripts.meta
+Assets/Scripts/SceneScripts/Build.cs
+Assets/Scripts/SceneScripts/Build.cs.meta
+Assets/Scripts/SceneScripts/Run.cs
+Assets/Scripts/SceneScripts/Run.cs.meta
+Assets/Scripts/Tools.meta
+Assets/Scripts/Tools/Grid.cs
+Assets/Scripts/Tools/Grid.cs.meta
+Assets/Scripts/Tools/Loader.cs
+Assets/Scripts/Tools/Loader.cs.meta
+Assets/Scripts/Tools/Utilities.cs
+Assets/Scripts/Tools/Utilities.cs.meta
+ProjectSettings/EditorBuildSettings.asset
+
+[33mcommit a6b1ae1d61bbe66bbe548550c673d6e438648800[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: Diego Romero Iregui <dromeroi@unal.edu.co>
+Date:   Tue Feb 1 00:22:01 2022 -0500
+
+    First commit, graphic interface for building board and .gitignore
+
+.gitignore
+Assets/Meshs.meta
+Assets/Meshs/AlgunosColores.mat
+Assets/Meshs/AlgunosColores.mat.meta
+Assets/Meshs/BlancoYNegro.mat
+Assets/Meshs/BlancoYNegro.mat.meta
+Assets/Meshs/PixelsAlgunosColores.png
+Assets/Meshs/PixelsAlgunosColores.png.meta
+Assets/Meshs/PixelsBlancoYNegro.png
+Assets/Meshs/PixelsBlancoYNegro.png.meta
+Assets/Scenes.meta
+Assets/Scenes/SampleScene.unity
+Assets/Scenes/SampleScene.unity.meta
+Assets/Scripts.meta
+Assets/Scripts/Grid.cs
+Assets/Scripts/Grid.cs.meta
+Assets/Scripts/Testing.cs
+Assets/Scripts/Testing.cs.meta
+Assets/Scripts/Utilities.cs
+Assets/Scripts/Utilities.cs.meta
+Assets/Sprites.meta
+Assets/Sprites/Square.png
+Assets/Sprites/Square.png.meta
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/AudioManager.asset
+ProjectSettings/ClusterInputManager.asset
+ProjectSettings/DynamicsManager.asset
+ProjectSettings/EditorBuildSettings.asset
+ProjectSettings/EditorSettings.asset
+ProjectSettings/GraphicsSettings.asset
+ProjectSettings/InputManager.asset
+ProjectSettings/NavMeshAreas.asset
+ProjectSettings/NetworkManager.asset
+ProjectSettings/PackageManagerSettings.asset
+ProjectSettings/Physics2DSettings.asset
+ProjectSettings/PresetManager.asset
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/QualitySettings.asset
+ProjectSettings/TagManager.asset
+ProjectSettings/TimeManager.asset
+ProjectSettings/TimelineSettings.asset
+ProjectSettings/UnityConnectSettings.asset
+ProjectSettings/VFXManager.asset
+ProjectSettings/VersionControlSettings.asset
+ProjectSettings/XRSettings.asset

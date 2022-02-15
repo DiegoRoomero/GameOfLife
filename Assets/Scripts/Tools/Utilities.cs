@@ -125,6 +125,8 @@ public class Utilities
         int i = 0;
         int j = 0;
 
+        int color;
+
         float posX;
         float posY;
 
@@ -136,16 +138,23 @@ public class Utilities
                 posX = x * cellSize + originPosition[0];
                 posY = y * cellSize + originPosition[1];
 
+                if(grid.GetValue(x, y) == 0)
+                {
+                    color = 1;
+                }
+                else { color = 0; }
+                
+
 
                 vertices[i] = new Vector3(posX, posY);
                 vertices[i+1] = new Vector3(posX, posY + cellSize);
                 vertices[i+2] = new Vector3(posX + cellSize, posY + cellSize);
                 vertices[i+3] = new Vector3(posX + cellSize, posY);
 
-                uv[i] = new Vector2(1, 0);
-                uv[i+1] = new Vector2(1, 0);
-                uv[i+2] = new Vector2(1, 0);
-                uv[i+3] = new Vector2(1, 0);
+                uv[i] = new Vector2(color, 0);
+                uv[i+1] = new Vector2(color, 0);
+                uv[i+2] = new Vector2(color, 0);
+                uv[i+3] = new Vector2(color, 0);
 
                 triangles[j] = i;
                 triangles[j+1] = i+1;
@@ -264,16 +273,35 @@ public class Utilities
             
     }
 
-    public static int RunConway(Grid grid, int x, int y)
+    public static Grid RunConway(Grid grid)
     {
-        int ValorActual = grid.GetValue(x,y);
 
-        if(ValorActual == 0)
+        Grid Newgrid = grid;
+        for (int x = 0; x < grid.getXLength(); x++)
         {
+            for (int y = 0; y < grid.getYLength(); y++)
+            {
+                int ValorActual = grid.GetValue(x, y);
 
+                if(ValorActual == 0)
+                {
+                    if(grid.AliveNeighbours(x,y) == 3)
+                    {
+                        Newgrid.SetValue(x, y, 1);
+                    }
+                }
+
+                else
+                {
+                    if (grid.AliveNeighbours(x, y) != 3 && grid.AliveNeighbours(x, y) != 2)
+                    {
+                        Newgrid.SetValue(x, y, 0);
+                    }
+                }
+
+            }
         }
 
-        return ValorActual;
+        return Newgrid;
     }
-
 }

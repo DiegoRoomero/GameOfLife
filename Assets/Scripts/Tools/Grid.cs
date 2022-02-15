@@ -9,7 +9,7 @@ public class Grid
     private float cellSize;
     private Vector3 originPosition;
     private int[,] gridArray;
-    private TextMesh[,] debugTextArray;
+    //private TextMesh[,] debugTextArray;
 
     public Grid(int width, int height, float cellSize, Vector3 originPosition)
     {
@@ -20,14 +20,14 @@ public class Grid
         this.originPosition = originPosition;
 
         gridArray = new int[width, height];
-        debugTextArray = new TextMesh[width, height];
+        //debugTextArray = new TextMesh[width, height];
 
         for (int x = 0; x < gridArray.GetLength(0); x++)
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
 
-                debugTextArray[x, y] = Utilities.CreateWorldText(null, gridArray[x, y].ToString(), GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 30, Color.clear, TextAnchor.MiddleCenter);
+                //debugTextArray[x, y] = Utilities.CreateWorldText(null, gridArray[x, y].ToString(), GetWorldPosition(x, y) + new Vector3(cellSize, cellSize) * .5f, 30, Color.clear, TextAnchor.MiddleCenter);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.black, 100f);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x + 1, y), Color.black, 100f);
 
@@ -65,7 +65,7 @@ public class Grid
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
             gridArray[x, y] = value;
-            debugTextArray[x, y].text = gridArray[x, y].ToString();
+            //debugTextArray[x, y].text = gridArray[x, y].ToString();
         }
     }
 
@@ -116,9 +116,57 @@ public class Grid
 
 
     }
+    public int AliveNeighbours(int x, int y)
+    {
 
-    
-    
+        int LeftX;
+        int RightX;
+        int BelowY;
+        int AboveY;
+
+        int counter = 0;
+
+
+        //We need to make the gridArray circular
+        if(x == 0) { LeftX = gridArray.GetLength(0) - 1; }
+        else{ LeftX = x - 1; }
+
+        if (x == gridArray.GetLength(0) -1) { RightX = 0; }
+        else { RightX = x + 1; }
+
+        if (y == 0) { BelowY = gridArray.GetLength(1) - 1; }
+        else { BelowY = y - 1; }
+
+        if (y == gridArray.GetLength(1) - 1) { AboveY = 0; }
+        else { AboveY = y + 1; }
+
+
+        //We check all neighbours
+
+        if(gridArray[LeftX, BelowY] == 1) { counter += 1; }
+
+        if(gridArray[LeftX, y] == 1) { counter += 1; }
+
+        if (gridArray[LeftX, AboveY] == 1) { counter += 1; }
+
+        if (gridArray[x, AboveY] == 1) { counter += 1; }
+
+        if (gridArray[RightX, AboveY] == 1) { counter += 1; }
+
+        if (gridArray[RightX, y] == 1) { counter += 1; }
+
+        if (gridArray[RightX, BelowY] == 1) { counter += 1; }
+
+        if (gridArray[x, BelowY] == 1) { counter += 1; }
+
+
+        return counter;
+        
+
+
+    }
+
+
 
 
 }
