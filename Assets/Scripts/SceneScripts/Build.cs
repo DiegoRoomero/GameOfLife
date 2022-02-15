@@ -19,17 +19,18 @@ public class Build : MonoBehaviour
     private float cellSize;
     private Vector3 originPosition = DataHolder.originPositionHolder;
 
-    private List<Vector3> visitedCells = new List<Vector3>();
     
     private void Start()
     {
 
         //Icon boxes
-        Utilities.MakeBox(new Vector3(-20, -17), new Vector3(-20, -13), new Vector3(-13, -13), new Vector3(-13, -17));
+        Utilities.MakeBox(new Vector3(-21, -17), new Vector3(-21, -13), new Vector3(-13, -13), new Vector3(-13, -17));
         Utilities.MakeBox(new Vector3(-9, -17), new Vector3(-9, -13), new Vector3(-2, -13), new Vector3(-2, -17));
         Utilities.MakeBox(new Vector3(9, -17), new Vector3(9, -13), new Vector3(2, -13), new Vector3(2, -17));
-        Utilities.MakeBox(new Vector3(20, -17), new Vector3(20, -13), new Vector3(13, -13), new Vector3(13, -17));
+        Utilities.MakeBox(new Vector3(21, -17), new Vector3(21, -13), new Vector3(13, -13), new Vector3(13, -17));
 
+        TextMesh debugTextArray = new TextMesh();
+        debugTextArray = Utilities.CreateWorldText(null, "P / E", new Vector3(17, -15), 30, Color.white, TextAnchor.MiddleCenter);
 
 
 
@@ -47,12 +48,18 @@ public class Build : MonoBehaviour
             grid = DataHolder.GridHolder;
         }
 
-        mesh = Utilities.AderirMesh(grid, originPosition, cellSize);
+        mesh = Utilities.AdherirMesh(grid, originPosition, cellSize);
         GetComponent<MeshFilter>().mesh = mesh;
 
 
         xtemp = -1;
         ytemp = -1;
+
+        if(DataHolder.ModeHolder is null)
+        {
+            DataHolder.ModeHolder = "p";
+        }
+        
 
     }
 
@@ -65,7 +72,7 @@ public class Build : MonoBehaviour
             //Debug.Log(xtemp + " " + ytemp);
            
 
-            if (grid.GetValue(Utilities.GetMouseWorldPositíon()) == 0)
+            if (grid.GetValue(Utilities.GetMouseWorldPositíon()) == 0 && DataHolder.ModeHolder == "p")
             {
 
                 grid.GetXY(Utilities.GetMouseWorldPositíon(), out x, out y);
@@ -87,7 +94,7 @@ public class Build : MonoBehaviour
 
 
             }
-            else if (grid.GetValue(Utilities.GetMouseWorldPositíon()) == 1)
+            else if (grid.GetValue(Utilities.GetMouseWorldPositíon()) == 1 && DataHolder.ModeHolder == "e")
             {
 
                 grid.GetXY(Utilities.GetMouseWorldPositíon(), out x, out y);
@@ -110,7 +117,6 @@ public class Build : MonoBehaviour
             
         }
 
-        visitedCells.Clear();
 
         if(Input.GetMouseButtonDown(0) && Utilities.RunButtonClicked(Utilities.GetMouseWorldPositíon())){
             DataHolder.GridHolder = grid;
@@ -118,6 +124,25 @@ public class Build : MonoBehaviour
 
             DataHolder.MeshHolder = mesh;
             Loader.Load(Loader.Scene.Run);
+        }
+
+        if (Input.GetMouseButtonDown(0) && Utilities.ClearButtonClicked(Utilities.GetMouseWorldPositíon()))
+        {
+            DataHolder.GridHolder = new Grid(horizontalCells, verticalCells, cellSize, originPosition); ;
+
+
+            DataHolder.MeshHolder = Utilities.AdherirMesh(DataHolder.GridHolder, originPosition, cellSize);
+            Loader.Load(Loader.Scene.Build);
+        }
+
+        if (Input.GetMouseButtonDown(0) && Utilities.SwitchModeButtonClicked(Utilities.GetMouseWorldPositíon()))
+        {
+            if(DataHolder.ModeHolder == "p")
+            {
+                DataHolder.ModeHolder = "e";
+            }
+            else { DataHolder.ModeHolder = "p"; }
+
         }
 
         if (Input.GetMouseButtonDown(1))

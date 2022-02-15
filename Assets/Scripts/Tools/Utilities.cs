@@ -113,7 +113,7 @@ public class Utilities
 
         return mesh;
     }
-    public static Mesh AderirMesh(Grid grid, Vector3 originPosition, float cellSize)
+    public static Mesh AdherirMesh(Grid grid, Vector3 originPosition, float cellSize)
     {
 
         Mesh mesh = new Mesh();
@@ -232,8 +232,8 @@ public class Utilities
 
         //First Bar
         vertices[4 * numOfCells + 11] = new Vector3(-16, -16);
-        vertices[4 * numOfCells + 12] = new Vector3(-18, -14);
-        vertices[4 * numOfCells + 13] = new Vector3(-17, -14);
+        vertices[4 * numOfCells + 12] = new Vector3(-19, -14);
+        vertices[4 * numOfCells + 13] = new Vector3(-18, -14);
         vertices[4 * numOfCells + 14] = new Vector3(-15, -16);
 
         uv[4 * numOfCells + 11] = new Vector2(0, 0);
@@ -250,10 +250,10 @@ public class Utilities
         triangles[6 * numOfCells + 20] = 4 * numOfCells + 14;
 
         //Second Bar
-        vertices[4 * numOfCells + 15] = new Vector3(-18, -16);
+        vertices[4 * numOfCells + 15] = new Vector3(-19, -16);
         vertices[4 * numOfCells + 16] = new Vector3(-16, -14);
         vertices[4 * numOfCells + 17] = new Vector3(-15, -14);
-        vertices[4 * numOfCells + 18] = new Vector3(-17, -16);
+        vertices[4 * numOfCells + 18] = new Vector3(-18, -16);
 
         uv[4 * numOfCells + 15] = new Vector2(0, 0);
         uv[4 * numOfCells + 16] = new Vector2(0, 0);
@@ -268,6 +268,7 @@ public class Utilities
         triangles[6 * numOfCells + 25] = 4 * numOfCells + 17;
         triangles[6 * numOfCells + 26] = 4 * numOfCells + 18;
 
+        
 
 
         mesh.vertices = vertices;
@@ -323,6 +324,38 @@ public class Utilities
         float y = vector[1];
 
         if (x >= -9 && x <= -2 && y <= -13 && y >= -17)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public static bool ClearButtonClicked(Vector3 vector)
+    {
+        float x = vector[0];
+        float y = vector[1];
+
+        if (x >= -20 && x <= -13 && y <= -13 && y >= -17)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
+    public static bool SwitchModeButtonClicked(Vector3 vector)
+    {
+        float x = vector[0];
+        float y = vector[1];
+
+        if (x >= 13 && x <= 20 && y <= -13 && y >= -17)
         {
             return true;
         }

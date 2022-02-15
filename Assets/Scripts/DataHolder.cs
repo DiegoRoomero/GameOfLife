@@ -27,5 +27,7 @@ public static class DataHolder
 
     public static Mesh MeshHolder { get; set; }
 
+    public static string ModeHolder { get; set; }
+
 
 }
