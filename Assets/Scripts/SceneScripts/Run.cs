@@ -26,8 +26,10 @@ public class Run : MonoBehaviour
 
         //Icon boxes
 
+        Utilities.MakeBox(new Vector3(-20, -17), new Vector3(-20, -13), new Vector3(-13, -13), new Vector3(-13, -17));
         Utilities.MakeBox(new Vector3(-9, -17), new Vector3(-9, -13), new Vector3(-2, -13), new Vector3(-2, -17));
         Utilities.MakeBox(new Vector3(9, -17), new Vector3(9, -13), new Vector3(2, -13), new Vector3(2, -17));
+        Utilities.MakeBox(new Vector3(20, -17), new Vector3(20, -13), new Vector3(13, -13), new Vector3(13, -17));
 
 
         grid = DataHolder.GridHolder;
@@ -46,11 +48,20 @@ public class Run : MonoBehaviour
             grid = Utilities.RunConway(grid);
             mesh = Utilities.AderirMesh(grid, originPosition, cellSize);
             GetComponent<MeshFilter>().mesh = mesh;
+
+            counter -= 10;
         }
 
         counter++;
-        
 
+        if (Input.GetMouseButtonDown(0) && Utilities.PauseButtonClicked(Utilities.GetMouseWorldPositíon()))
+        {
+            DataHolder.GridHolder = grid;
+
+
+            DataHolder.MeshHolder = mesh;
+            Loader.Load(Loader.Scene.Build);
+        }
 
     }
 }

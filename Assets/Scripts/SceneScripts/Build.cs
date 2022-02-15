@@ -25,17 +25,31 @@ public class Build : MonoBehaviour
     {
 
         //Icon boxes
-
+        Utilities.MakeBox(new Vector3(-20, -17), new Vector3(-20, -13), new Vector3(-13, -13), new Vector3(-13, -17));
         Utilities.MakeBox(new Vector3(-9, -17), new Vector3(-9, -13), new Vector3(-2, -13), new Vector3(-2, -17));
         Utilities.MakeBox(new Vector3(9, -17), new Vector3(9, -13), new Vector3(2, -13), new Vector3(2, -17));
+        Utilities.MakeBox(new Vector3(20, -17), new Vector3(20, -13), new Vector3(13, -13), new Vector3(13, -17));
+
+
 
 
         horizontalCells = 2 * verticalCells;
         cellSize = 30 / verticalCells;
 
-        grid = new Grid(horizontalCells, verticalCells,cellSize, originPosition);
+        if (DataHolder.GridHolder is null)
+        { 
+
+            grid = new Grid(horizontalCells, verticalCells, cellSize, originPosition);
+            
+        }
+        else
+        {
+            grid = DataHolder.GridHolder;
+        }
+
         mesh = Utilities.AderirMesh(grid, originPosition, cellSize);
         GetComponent<MeshFilter>().mesh = mesh;
+
 
         xtemp = -1;
         ytemp = -1;

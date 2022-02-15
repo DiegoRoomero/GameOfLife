@@ -19,7 +19,7 @@ public static class DataHolder
         }
     }*/
 
-    public static int verticalCellsHolder = 30;
+    public static int verticalCellsHolder = 15;
 
     public static Vector3 originPositionHolder = new Vector3(-30, -10);
 

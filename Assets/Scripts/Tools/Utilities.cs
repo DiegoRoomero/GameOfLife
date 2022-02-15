@@ -118,9 +118,9 @@ public class Utilities
 
         Mesh mesh = new Mesh();
         int numOfCells = grid.getXLength() * grid.getYLength();
-        Vector3[] vertices = new Vector3[4 * numOfCells + 11];
-        Vector2[] uv = new Vector2[4 * numOfCells + 11];
-        int[] triangles = new int[6 * numOfCells + 15];
+        Vector3[] vertices = new Vector3[4 * numOfCells + 19];
+        Vector2[] uv = new Vector2[4 * numOfCells + 19];
+        int[] triangles = new int[6 * numOfCells + 27];
 
         int i = 0;
         int j = 0;
@@ -172,6 +172,8 @@ public class Utilities
 
         }
 
+        //BUTTONS
+
         //Play button triangle
         vertices[4 * numOfCells] = new Vector3(4, -16);
         vertices[4 * numOfCells + 1] = new Vector3(4, -14);
@@ -186,6 +188,7 @@ public class Utilities
         triangles[6*numOfCells + 2] = 4*numOfCells + 2;
 
         //Pause Button
+
         //First Bar
         vertices[4 * numOfCells + 3] = new Vector3(-5, -16);
         vertices[4 * numOfCells + 4] = new Vector3(-5, -14);
@@ -224,6 +227,47 @@ public class Utilities
         triangles[6 * numOfCells + 12] = 4 * numOfCells + 7;
         triangles[6 * numOfCells + 13] = 4 * numOfCells + 9;
         triangles[6 * numOfCells + 14] = 4 * numOfCells + 10;
+
+        //Clear Button (X)
+
+        //First Bar
+        vertices[4 * numOfCells + 11] = new Vector3(-16, -16);
+        vertices[4 * numOfCells + 12] = new Vector3(-18, -14);
+        vertices[4 * numOfCells + 13] = new Vector3(-17, -14);
+        vertices[4 * numOfCells + 14] = new Vector3(-15, -16);
+
+        uv[4 * numOfCells + 11] = new Vector2(0, 0);
+        uv[4 * numOfCells + 12] = new Vector2(0, 0);
+        uv[4 * numOfCells + 13] = new Vector2(0, 0);
+        uv[4 * numOfCells + 14] = new Vector2(0, 0);
+
+        triangles[6 * numOfCells + 15] = 4 * numOfCells + 11;
+        triangles[6 * numOfCells + 16] = 4 * numOfCells + 12;
+        triangles[6 * numOfCells + 17] = 4 * numOfCells + 13;
+
+        triangles[6 * numOfCells + 18] = 4 * numOfCells + 11;
+        triangles[6 * numOfCells + 19] = 4 * numOfCells + 13;
+        triangles[6 * numOfCells + 20] = 4 * numOfCells + 14;
+
+        //Second Bar
+        vertices[4 * numOfCells + 15] = new Vector3(-18, -16);
+        vertices[4 * numOfCells + 16] = new Vector3(-16, -14);
+        vertices[4 * numOfCells + 17] = new Vector3(-15, -14);
+        vertices[4 * numOfCells + 18] = new Vector3(-17, -16);
+
+        uv[4 * numOfCells + 15] = new Vector2(0, 0);
+        uv[4 * numOfCells + 16] = new Vector2(0, 0);
+        uv[4 * numOfCells + 17] = new Vector2(0, 0);
+        uv[4 * numOfCells + 18] = new Vector2(0, 0);
+
+        triangles[6 * numOfCells + 21] = 4 * numOfCells + 15;
+        triangles[6 * numOfCells + 22] = 4 * numOfCells + 16;
+        triangles[6 * numOfCells + 23] = 4 * numOfCells + 17;
+
+        triangles[6 * numOfCells + 24] = 4 * numOfCells + 15;
+        triangles[6 * numOfCells + 25] = 4 * numOfCells + 17;
+        triangles[6 * numOfCells + 26] = 4 * numOfCells + 18;
+
 
 
         mesh.vertices = vertices;
@@ -273,10 +317,33 @@ public class Utilities
             
     }
 
+    public static bool PauseButtonClicked(Vector3 vector)
+    {
+        float x = vector[0];
+        float y = vector[1];
+
+        if (x >= -9 && x <= -2 && y <= -13 && y >= -17)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
+
     public static Grid RunConway(Grid grid)
     {
+        int verticalCells = DataHolder.verticalCellsHolder;
+        int horizontalCells = 2 * verticalCells;
+        Vector3 originPosition = DataHolder.originPositionHolder;
+        int cellSize = 30 / verticalCells;
+        
 
-        Grid Newgrid = grid;
+        Grid Newgrid = new Grid(horizontalCells, verticalCells, cellSize, originPosition);
+        int AN;
+
         for (int x = 0; x < grid.getXLength(); x++)
         {
             for (int y = 0; y < grid.getYLength(); y++)
@@ -288,19 +355,28 @@ public class Utilities
                     if(grid.AliveNeighbours(x,y) == 3)
                     {
                         Newgrid.SetValue(x, y, 1);
+                       
                     }
+                    
                 }
 
                 else
                 {
-                    if (grid.AliveNeighbours(x, y) != 3 && grid.AliveNeighbours(x, y) != 2)
+                    AN = grid.AliveNeighbours(x, y);
+                    //Debug.Log(AN);
+                    if ( AN != 3 && AN != 2)
                     {
                         Newgrid.SetValue(x, y, 0);
+                    }
+                    else
+                    {
+                        Newgrid.SetValue(x, y, 1);
                     }
                 }
 
             }
         }
+        //Debug.Log("----");
 
         return Newgrid;
     }
